@@ -1,11 +1,9 @@
 package com.demo.dokong.kotlincoroutinestest.ui
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import com.demo.dokong.kotlincoroutinestest.comm.BaseViewModel
 import com.demo.dokong.kotlincoroutinestest.dao.AppDatabase
-import com.demo.dokong.kotlincoroutinestest.dao.RoomHelper
 import com.demo.dokong.kotlincoroutinestest.ktx.request
 import com.demo.dokong.kotlincoroutinestest.response.RequestUrl
 import com.demo.dokong.kotlincoroutinestest.response.bean.ResponseCacheBean
