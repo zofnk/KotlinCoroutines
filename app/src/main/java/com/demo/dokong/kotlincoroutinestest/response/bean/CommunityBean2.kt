@@ -9,7 +9,7 @@ import androidx.databinding.library.baseAdapters.BR
  * Email : zofnk@vip.qq.com.
  * Creat Time :  2019-9-26. 11:43
  */
-data class CommunityBean(
+data class CommunityBean2(
     var DisplayScore: Int,
     var IsTop: Int,
     var Likes: Int,

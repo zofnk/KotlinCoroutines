@@ -15,16 +15,16 @@ object RetrofitClient {
 
     private const val time = 5L
 
-    val request: RequestService by lazy {
+    val apiServer: RequestService by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(RequestUrl.BASE_URL)
-            .client(okhttpManager.build())
+            .client(okHttpManager.build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return@lazy retrofit.create(RequestService::class.java)
     }
 
-    private val okhttpManager by lazy {
+    private val okHttpManager by lazy {
         OkHttpClient().newBuilder()
             .apply {
                 connectTimeout(time, TimeUnit.SECONDS)

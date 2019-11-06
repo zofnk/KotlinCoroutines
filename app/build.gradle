@@ -19,11 +19,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    kotlin {
-        experimental {
-            coroutines 'enable'
-        }
-    }
 
     dataBinding {
         enabled = true
@@ -39,6 +34,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    kapt "com.android.databinding:compiler:3.1.4"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -53,11 +49,18 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
+    implementation 'com.alibaba:fastjson:1.2.61'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+
     implementation "android.arch.persistence.room:runtime:1.1.1"
-//    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     kapt "android.arch.persistence.room:compiler:1.1.1"
 
 
     implementation 'com.facebook.stetho:stetho:1.5.0'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.1'
+
+    implementation 'com.hjq:toast:8.0'
+
+    implementation 'com.github.zofnk:AllForOne:0.0.1'
+
 }

@@ -11,12 +11,12 @@ import com.demo.dokong.kotlincoroutinestest.response.bean.ResponseCacheBean
 @Dao
 interface ResponseCacheDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertResponse(resp: ResponseCacheBean)
 
-    @Query("SELECT * FROM responses_cache WHERE url = :url")
-    fun queryResponse(url: String): ResponseCacheBean
+//    @Query("SELECT * FROM responses_cache WHERE url = :url")
+    suspend fun queryResponse(url: String): ResponseCacheBean
 
-    @Update
+//    @Update
     fun upgradeResponse(resp: ResponseCacheBean)
 }

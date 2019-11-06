@@ -1,5 +1,6 @@
 package com.demo.dokong.kotlincoroutinestest.ktx
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
@@ -28,10 +29,11 @@ fun AndroidViewModel.toast(str: String) {
 }
 
 fun <T> AndroidViewModel.request(
+    showToast: Boolean = true,
     onRequest: suspend () -> T,
     onStart: (() -> Unit)? = null,
     onSuccess: suspend (T) -> Unit,
-    onError: suspend (Int, String) -> Unit,
+    onError: suspend (Exception) -> Unit = { _ -> },
     onComplete: (() -> Unit)? = null
 ) {
     viewModelScope.launch {
@@ -41,26 +43,28 @@ fun <T> AndroidViewModel.request(
             withContext(Dispatchers.Main) { onSuccess.invoke(result) }
         } catch (e: Exception) {
             e.printStackTrace()
+            var message = ""
             var code = 0
-            val message = when (e) {
-                is SocketTimeoutException -> "SocketTimeoutException"
+            when (e) {
+                is SocketTimeoutException -> if (showToast) toast("网络连接超时,请重试")
                 is ConnectException -> "ConnectException"
                 is UnknownHostException -> "UnknownHostException"
                 is EOFException -> "EOFException"
                 is JsonSyntaxException -> "JsonSyntaxException"
                 is TimeoutException -> "TimeoutException"
                 is SocketException -> "SocketException"
-                is ApiException -> {
-                    code = e.code
-                    e.msg
-                }
                 is HttpException -> {
-                    code = e.code()
-                    e.message()
+                }
+                is ApiException -> {
+                    message = e.msg
+                    code = e.code
                 }
                 else -> "OTHER"
             }
-            withContext(Dispatchers.Main) { onError.invoke(code, message) }
+            withContext(Dispatchers.Main) {
+                Log.e("DOKONG", "异常 Code : $code  Message : $message")
+                onError.invoke(e)
+            }
         } finally {
             //延时1秒结束,避免loading动画执行不完整
             kotlinx.coroutines.delay(1000)

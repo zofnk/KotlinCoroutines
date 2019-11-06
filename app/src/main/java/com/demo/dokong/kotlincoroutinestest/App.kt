@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.amitshekhar.DebugDB
 import com.facebook.stetho.Stetho
+import com.hjq.toast.ToastUtils
 
 /**
  * Author : zofnk.
@@ -21,6 +22,7 @@ class App : Application() {
         super.onCreate()
         ctx = this
         Stetho.initializeWithDefaults(this)
+        ToastUtils.init(this)
         Log.e("DOKONG", "DOKONG SQLite_DEBUG_URL : " + DebugDB.getAddressLog())
     }
 

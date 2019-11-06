@@ -11,13 +11,13 @@ import com.demo.dokong.kotlincoroutinestest.response.bean.RoomBean
  * Email : zofnk@vip.qq.com.
  * Creat Time :  2019-9-27. 11:32
  */
-@Dao
+//@Dao
 interface RoomDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRoom(bean: RoomBean)
 
-    @Query("SELECT * FROM testRoom WHERE id = :id")
+//    @Query("SELECT * FROM testRoom WHERE id = :id")
     fun queryRoom(id: Int): RoomBean
 
 }

@@ -12,7 +12,7 @@ import com.demo.dokong.kotlincoroutinestest.response.bean.RoomBean
  * Email : zofnk@vip.qq.com.
  * Creat Time :  2019-9-27. 11:23
  */
-@Database(entities = [RoomBean::class, ResponseCacheBean::class], version = 4)
+//@Database(entities = [RoomBean::class, ResponseCacheBean::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getRoomDao(): RoomDao
     abstract fun getResponseDao(): ResponseCacheDao
